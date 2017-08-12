@@ -60,7 +60,7 @@ app.get('/', function(request, response) {
 
 app.get('/api/get/comicbooks', function(request, response) {
   console.log('hi')
-  response.send(JSON.stringify(sampleData));
+  response.send(sampleData);
   console.log('get request tp /api/get/comicbooks')
 })
 

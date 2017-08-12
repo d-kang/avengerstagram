@@ -8,22 +8,31 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    $.get('/api/get/comicbooks', (response) => {
+    $.get('/api/get/treeData', (response) => {
+      response = JSON.parse(response)
       console.log('response', response)
-      var myarr = response.slice();
-      console.log(Array.isArray(response))
-      this.setState({ message: myarr })
+      this.setState({ message: response })
     })
   }
 
   addMessage(query) {
     // this.setState({message: query})
+    var data = {
+      height: query,
+      color: query,
+      name: query
+    }
+    $.post('/api/post/treeData', data);
+    $.get('/api/get/treeData', (response) => {
+      response = JSON.parse(response)
+      this.setState({ message: response })
+    });
   }
   render() {
     return (
       <div className="app">
         <Form addMessage={this.addMessage} />
-        {  }
+        { JSON.stringify(this.state.message) }
       </div>
     )
   }

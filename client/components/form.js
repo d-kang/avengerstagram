@@ -7,7 +7,9 @@ class Form extends React.Component {
   render() {
     return (
       <form onSubmit={this.submit.bind(this)}>
-        <input ref={(input) => this.input = input} />
+        <input ref={(input) => this._height = input} placeholder="height" required />
+        <input ref={(input) => this._color = input} placeholder="color" required />
+        <input ref={(input) => this._name = input} placeholder="name" required />
         <button>ADD</button>
       </form>
     )

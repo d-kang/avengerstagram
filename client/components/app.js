@@ -17,12 +17,12 @@ class App extends React.Component {
 
   addMessage(query) {
     // this.setState({message: query})
-    var data = {
-      height: query,
-      color: query,
-      name: query
+    var { height, name, color } = query;
+    if (typeof height === 'string') {
+      height = 0;
     }
-    $.post('/api/post/treeData', data);
+    console.log(query)
+    $.post('/api/post/treeData', {height, name, color});
     $.get('/api/get/treeData', (response) => {
       response = JSON.parse(response)
       this.setState({ message: response })

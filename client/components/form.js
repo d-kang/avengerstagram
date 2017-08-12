@@ -1,15 +1,24 @@
 class Form extends React.Component {
   submit(e) {
     e.preventDefault()
-   this.props.addMessage(this.input.value)
-   this.input.value = '';
+    var obj = {
+      height: this._height.value,
+      color: this._color.value,
+      name: this._name.value
+    }
+    console.log(1, obj)
+    this.props.addMessage(obj)
+    this._height.value = '';
+    this._color = '';
+    this._name = '';
+
   }
   render() {
     return (
       <form onSubmit={this.submit.bind(this)}>
-        <input ref={(input) => this._height = input} placeholder="height" required />
-        <input ref={(input) => this._color = input} placeholder="color" required />
-        <input ref={(input) => this._name = input} placeholder="name" required />
+        <input ref={(height) => this._height = height} placeholder="height" required />
+        <input ref={(color) => this._color = color} placeholder="color" required />
+        <input ref={(name) => this._name = name} placeholder="name" required />
         <button>ADD</button>
       </form>
     )

@@ -13,6 +13,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+var sampleData = require('./sampleData');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,13 +31,7 @@ app.use(express.static(__dirname + '/../compiled'));
 //   res.render('index');
 // });
 
-app.post('/', function (req, res) {
-  res.send('Post request made');
-});
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
 
 
 var trees = [{
@@ -57,11 +53,22 @@ var trees = [{
 
 
 
+
 app.get('/', function(request, response) {
   console.log('get request to /')
-
-  response.send('serving /client/index.html'); // serving index.html
 });
+
+app.get('/api/get/comicbooks', function(request, response) {
+  console.log('hi')
+  response.send(JSON.stringify(sampleData));
+  console.log('get request tp /api/get/comicbooks')
+})
+
+app.get('/api/sampleData', (request, response) => {
+  console.log('get request to /api/sampleData')
+    response.send(trees);
+})
+// emulates
 
 app.post('/', function(request, response) {
   console.log('post request to / ' )
@@ -84,3 +91,8 @@ app.post('/api/trees', function (request, response) {
   trees.push(body);
   response.send(body)
 })
+
+
+app.listen(5000, function () {
+  console.log('Example app listening on port 5000!');
+});

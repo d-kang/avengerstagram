@@ -1,15 +1,20 @@
 
 
-console.log('hi')
-
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { message: '' }
+    this.state = { message: [] }
     this.addMessage = this.addMessage.bind(this)
+
+    $.get('/api/get/comicbooks', (response) => {
+      console.log('response', response)
+      this.state.message = response
+    })
   }
+
   addMessage(query) {
     this.setState({message: query})
+
   }
   render() {
     return (

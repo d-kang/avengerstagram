@@ -18,3 +18,8 @@ class Form extends React.Component {
 // window.Form = Form;
 // related to babel
 // dont use front end routing for this exercise
+// work on get request first
+// have the data render on the front end
+// pass down data to child components
+
+// jquery ajax or fetch
